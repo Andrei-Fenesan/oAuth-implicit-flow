@@ -10,6 +10,21 @@ function Home() {
     const [authToken, setAuthToken] = useState()
     const [error, setError] = useState("")
 
+    const fetchUserProfile = useCallback(async (token) => {
+        return await axios.get(process.env.REACT_APP_GOOGLE_USER_INFO_URL, {
+            headers: {
+                Authorization: token
+                }})
+                .then(responseData => {
+                    if(responseData.status === 200){
+                        return {email: responseData.data.email}
+                    }
+                else {
+                    throw new Error("Cannot get data from google")
+                }
+            })
+    }, [])
+
     useEffect(() => {
        const hashKeyValuePairs = fromUrlHashToKeyValuePairs(hash)
        if(hashKeyValuePairs[`state`] !== localStorage.getItem(oauthStateLocalStorageKey)) {
@@ -26,26 +41,11 @@ function Home() {
             .catch(err => setError(err.message))
         setAuthToken(token)
         }
-    }, [])
-    
-    const fetchUserProfile = useCallback(async (token) => {
-        return await axios.get(process.env.REACT_APP_GOOGLE_USER_INFO_URL, {
-            headers: {
-                Authorization: token
-                }})
-                .then(responseData => {
-                    if(responseData.status === 200){
-                        return {email: responseData.data.email}
-                    }
-                else {
-                    throw new Error("Cannot get data from google")
-                }
-            })
-    }, [])
+    }, [fetchUserProfile, hash])
         
     const fromUrlHashToKeyValuePairs = (hash) => {
         const resultMap = {}
-        if(!hash || hash.length == 0){
+        if(!hash || hash.length === 0){
             return {}
         }
         const actualHash = hash.startsWith("#") ? hash.slice(1) : hash
