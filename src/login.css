@@ -1,0 +1,16 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signInBtn {
+    width: 22vw;
+    height: 5vh;
+    background-color: #42f58d;
+    font-size: large;
+}
+
+.signInBtn:hover {
+    background-color: #057534
+}
