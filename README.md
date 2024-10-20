@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Overview
+This projects proposed to present the oAuth Implicit Flow.
+This flow allows the client application to get the authorization token from the Authorization Server
+# Getting started
+## 1. Generate credentials
+1. Go to https://console.cloud.google.com/apis/credentials
+2. Press on Create Credentials button and select oauth Client ID
+3. Select Application type: Web application
+4. Add the Authorized JavaScript origins (hostname of your server). For local development, add http://localhost:[PORT]
+5. Add Authorized redirect URIs. This is the Redirect URI where you will be redirected after the oAuth process is completed. For local development add someting like http://localhost:[PORT]/home
+6. Press on Create button
+7. To view you credentials, press on the app name. (You should see the credentials: client_id and client_secret)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 2. Setup project
+1. Clone this repository
+2. Add the .env file with the folowing vairables:
+    - REACT_APP_CLIENT_ID={your client id} This must be the clientId from the created Google credentials
+    - REACT_APP_OAUTH_REDIRECT_URI={redirect uri introduced when creating the credentials}
+    - REACT_APP_OAUTH_RESPONSE_TYPE=token
+    - REACT_APP_OAUTH_SCOPE=email
+    - REACT_APP_GOOGLE_ACCOUNTS=https://accounts.google.com/o/oauth2/v2/auth
+    - REACT_APP_GOOGLE_USER_INFO_URL=https://www.googleapis.com/oauth2/v3/userinfo
+3. Run the project with `npm start` command and try it out
